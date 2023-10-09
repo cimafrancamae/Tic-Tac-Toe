@@ -1,0 +1,100 @@
+@use '../../reset';
+@import './variables';
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.css");
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    padding: 5rem;
+    gap: 2rem;
+}
+
+#main-container {
+    display: none;
+    width: $mainContainerWidth;
+    height: $mainContainerHeight;
+    flex-wrap: wrap;
+    background-color: $mainContainerBgColor;
+}
+
+.choose-player-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    .choose-player {
+        display: flex;
+        gap: 2rem;
+
+        div {
+            background-color: $mainContainerBgColor;
+            padding: 1rem;
+            cursor: pointer;
+        }
+    }
+
+    .confirm-player{
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+    }
+}
+
+.box {
+    border: 2px solid #fff;
+    width: $boxWidth;
+    height: $boxHeight;
+}
+
+.circle::before{
+    @include xoElement;
+    content: "";
+    display: block;
+    border: 5px solid $oColor;
+    border-radius: 50%;
+    animation: drawXO $animationDuration linear;
+    animation-fill-mode: forwards;
+    transform-origin: center;
+}
+
+.cross {
+    position: relative;
+    padding: 10px;
+}
+
+.cross::before {
+    content: "";
+    position: absolute;
+    background-color: $xColor;
+    width: 10px;
+    height: $xoElementHeight;
+    transform: rotate(45deg);
+    left: 45px;
+    animation: drawXO $animationDuration linear;
+}
+
+.cross::after {
+    content: "";
+    position: absolute;
+    background-color: $xColor;
+    width: 10px;
+    height: $xoElementHeight;
+    transform: rotate(135deg);
+    left: 45px;
+    animation: drawXO $animationDuration linear;
+}
+
+@keyframes drawXO {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

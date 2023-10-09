@@ -1,0 +1,16 @@
+$mainContainerWidth: 300px;
+$mainContainerHeight: 300px;
+$mainContainerBgColor: #f3f3f3;
+$boxWidth: calc($mainContainerWidth / 3);
+$boxHeight: calc($mainContainerHeight / 3);
+$xColor: red;
+$oColor: blue;
+$xoElementWidth: 80%;
+$xoElementHeight: 80%;
+$animationDuration: 1s;
+
+@mixin xoElement {
+    width: $xoElementWidth;
+    height: $xoElementHeight;
+    margin: 10px auto;
+}
