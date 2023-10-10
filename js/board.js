@@ -1,4 +1,8 @@
+import { recordMove, displayWinner } from './winner.js'
+
 const mainContainer = document.getElementById('main-container');
+
+
 let board = [
     ['', '', ''],
     ['', '', ''],
@@ -6,12 +10,13 @@ let board = [
 ];
 
 let moves = [];
+let gameOver = false;
 
 export function loadBoard(firstPlayer) {
     let player = firstPlayer;
 
     board.forEach((row,index) => {
-        row.forEach((sq, i) => {
+        row.forEach((_sq, i) => {
             // Create the Tic Tac Toe squares
             const square = document.createElement('div');
             const squareId = `box-${index}${i}`;
@@ -21,29 +26,30 @@ export function loadBoard(firstPlayer) {
 
             //Listen if a box is clicked
             square.addEventListener('click', () => {
-                console.log('index: ',index, 'i: ', i, 'player: ', player)
-                // console.log(board)
+                
+
                 if(player === "x"){
-                    // board[index][i] = "x"
-                    recordMove(index, i, "x")
+                    gameOver = recordMove("x", index, i)
                     square.classList.toggle('cross');
-                    player = "o"
                 }else if(player === "o"){
-                    // board[index][i] = "o"
-                    recordMove(index, i, "o")
+                    gameOver = recordMove("o", index, i)
                     square.classList.toggle('circle');
-                    player = "x"
                 }
+
+                if(gameOver){
+                    displayWinner(player);
+
+                    const allBoxes = document.querySelectorAll('.box')
+                    allBoxes.forEach(box => box.replaceWith(box.cloneNode(true)))
+                    return
+                }
+
+                player = player === "x" ? "o" : "x";
             })
+
+            
         })
     })
 
     mainContainer.style.display = "flex";
-}
-
-function recordMove(index, i, player){
-    const newArray = ['', '', ''];
-    newArray[i] = player
-    board.push(newArray)
-    console.log('newBoard: ', board)
 }

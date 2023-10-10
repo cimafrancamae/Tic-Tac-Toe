@@ -95,6 +95,20 @@ body {
   height: 100px;
 }
 
+.winner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+.winner div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 2rem;
+}
+
 .circle::before {
   width: 80%;
   height: 80%;

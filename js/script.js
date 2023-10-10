@@ -10,16 +10,16 @@ let player = "";
 playerX.addEventListener('click', () => {
     player = "x"
     confirmPlayer.innerHTML = ""
-    choosePlayer(player)
+    choosePlayer()
 })
 
 playerO.addEventListener('click', () => {
     player = "o"
     confirmPlayer.innerHTML = ""
-    choosePlayer(player)
+    choosePlayer()
 })
 
-function choosePlayer(player) {
+function choosePlayer() {
     const span = document.createElement('span');
     const button = document.createElement('button');
     let playerText = ""
@@ -38,7 +38,6 @@ function choosePlayer(player) {
 
     button.addEventListener('click', () => {
         choosePlayerContainer.style.display = "none";
-        console.log(player)
         loadBoard(player);
     })
 }
