@@ -95,6 +95,10 @@ body {
   height: 100px;
 }
 
+.clicked {
+  pointer-events: none;
+}
+
 .winner {
   display: flex;
   flex-direction: column;

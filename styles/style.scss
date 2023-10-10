@@ -52,6 +52,10 @@ body {
     height: $boxHeight;
 }
 
+.clicked {
+    pointer-events: none;
+}
+
 .winner {
     display: flex;
     flex-direction: column;

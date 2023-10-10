@@ -71,5 +71,11 @@ export function displayWinner(player){
 
     buttonDiv.append(prevButton, nextButton)
     winnerDisplay.append(span, buttonDiv, restart)
+
+    restart.addEventListener('click', restartGame)
+}
+
+function restartGame(){
+
 }
 

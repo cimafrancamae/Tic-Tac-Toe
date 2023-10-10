@@ -44,6 +44,7 @@ export function loadBoard(firstPlayer) {
                     return
                 }
 
+                square.classList.add('clicked');
                 player = player === "x" ? "o" : "x";
             })
 
