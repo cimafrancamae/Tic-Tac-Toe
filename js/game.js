@@ -1,77 +1,60 @@
-const mainContainer = document.getElementById('main-container');
+import { restartGame } from './script.js'
+import { gameState, winningCombos } from './variables.js'
+
 const infoContainer = document.querySelector('.info-container');
-const boxes = document.querySelectorAll('.box')
 
-const winningCombos = [
-    ["00", "01", "02"],
-    ["10", "11", "12"],
-    ["20", "21", "22"],
-    ["00", "10", "20"],
-    ["01", "11", "21"],
-    ["02", "12", "22"],
-    ["00", "11", "22"],
-    ["20", "11", "02"]
-]
+export function recordMove(index1, index2){
 
-let playerXCombos = []
-let playerOCombos = []
-let winner = false;
-// let board = [];
+    infoContainer.innerHTML = "";
 
-export function recordMove(board, player, index1, index2){
     //Update Board State
-    board[index1][index2] = player;
+    gameState.board[index1][index2] = gameState.player;
 
     //Concatenate indices
     const index = index1.toString() + index2.toString();
 
     //Store indices to player's array
-    player === "X" ? playerXCombos.push(index) : playerOCombos.push(index);
+    gameState.player === "X" ? gameState.playerXCombos.push(index) : gameState.playerOCombos.push(index);
+
+    const nextPlayer = gameState.player === "X" ? "O" : "X";
 
     const span = document.createElement('span');
-    span.textContent = "It's Player " + player + "'s Turn";
+    span.textContent = "It's Player " + nextPlayer + "'s Turn";
+
     infoContainer.append(span);
+
 }
 
-export function checkWinner(player){
+export function checkWinner(){
 
-    let playerMoves = player === "X" ? playerXCombos : playerOCombos;
-    let checkWinningCombo = winningCombos
+    let playerMoves = gameState.player === "X" ? gameState.playerXCombos : gameState.playerOCombos;
 
-    playerMoves.forEach((move) => {
+    if(playerMoves.length >= 3){
 
-        //Check if player has winning combinations
-        checkWinningCombo = checkWinningCombo.filter(array => array.includes(move))
+        //Lookup the winning combos
+        winningCombos.forEach((combo) => {
 
-        //Check if player has one winning combination left
-        if(checkWinningCombo.length === 1){
+            //Check if player's moves has a winning combination
+            const comboExist = combo.every(item => playerMoves.includes(item))
+            if(comboExist){
+                gameState.gameOver = true
+            }
+        })
 
-            //Sort the winning combinations in each array
-            checkWinningCombo = checkWinningCombo.slice().sort()
-            playerMoves = playerMoves.slice().sort()
+        return gameState.gameOver
 
-            //If all items in players array exist in the winning combination array, player wins
-            winner = checkWinningCombo[0].every(item => playerMoves.includes(item));
-        }
-    })
+    } else {
 
-    return winner
+        return false
+
+    }
 }
 
-export function displayWinner(player){
+export function displayWinner(){
     infoContainer.innerHTML = "";
 
     const span = document.createElement('span')
-
-    if(player === "tie"){
-        span.textContent = "It's a TIE!";
-    } else {
-        span.textContent = "Player " + player + " Wins!";
-    }
-
-    // span.textContent = player === "tie" ? "It's a TIE" : "Player " + player + " Wins!";
-    
-    console.log(span)
+    span.textContent = gameState.player === "tie" ? "It's a TIE" : "Player " + gameState.player + " Wins!";
 
     const buttonDiv = document.createElement('div')
     
@@ -86,25 +69,14 @@ export function displayWinner(player){
     const restart = document.createElement('button')
     restart.textContent = "Restart Game"
 
-    console.log(prevButton, nextButton, restart, buttonDiv)
-    console.log(infoContainer)
     buttonDiv.append(prevButton, nextButton)
     infoContainer.append(span, buttonDiv, restart)
 
 
-    // restart.addEventListener('click', restartGame)
+    restart.addEventListener('click', restartGame)
 
-    //Replace all boxes with a deep clone of itself and removes the event listener 
-    // const allBoxes = document.querySelectorAll('.box')
-    // allBoxes.forEach(box => box.replaceWith(box.cloneNode(true))) 
-    // boxes.forEach(box => box.classList.add('clicked'))
-}
-
-function restartGame(){
-    console.log("you're here!", boxes)
-    boxes.forEach((row) => {
-        console.log(row)
-
-    })
+    //Replace all boxes with a deep clone of itself and remove the event listener 
+    const allBoxes = document.querySelectorAll('.box')
+    allBoxes.forEach(box => box.replaceWith(box.cloneNode(true))) 
 }
 

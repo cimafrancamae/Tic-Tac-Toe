@@ -121,7 +121,7 @@ body {
   display: block;
   border: 5px solid blue;
   border-radius: 50%;
-  animation: drawXO 1s linear;
+  animation: drawXO 0.1s linear;
   animation-fill-mode: forwards;
   transform-origin: center;
 }
@@ -139,7 +139,7 @@ body {
   height: 80%;
   transform: rotate(45deg);
   left: 45px;
-  animation: drawXO 1s linear;
+  animation: drawXO 0.1s linear;
 }
 
 .cross::after {
@@ -150,7 +150,7 @@ body {
   height: 80%;
   transform: rotate(135deg);
   left: 45px;
-  animation: drawXO 1s linear;
+  animation: drawXO 0.1s linear;
 }
 
 @keyframes drawXO {

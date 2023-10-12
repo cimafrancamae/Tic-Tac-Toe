@@ -1,4 +1,5 @@
 import { recordMove, checkWinner, displayWinner } from './game.js'
+import { gameState } from './variables.js'
 
 const choosePlayerContainer = document.querySelector('.choose-player-container');
 const confirmPlayer = document.querySelector('.confirm-player');
@@ -7,34 +8,25 @@ const infoContainer = document.querySelector('.info-container');
 const playerX = document.getElementById('player-x');
 const playerO = document.getElementById('player-o');
 
-let board = [
-    ['', '', ''],
-    ['', '', ''],
-    ['', '', ''],
-];
-
-let player = "";
-let gameOver = false;
-
-playerX.addEventListener('click', () => {
-    player = "X"
+function setPlayerX(){
+    gameState.player = "X"
     confirmPlayer.innerHTML = ""
-    choosePlayer()
-})
+    confirmFirstPlayer()
+}
 
-playerO.addEventListener('click', () => {
-    player = "O"
+function setPlayerO(){
+    gameState.player = "O"
     confirmPlayer.innerHTML = ""
-    choosePlayer()
-})
+    confirmFirstPlayer()
+}
 
 //Select First Player
-function choosePlayer() {
+function confirmFirstPlayer() {
     const span = document.createElement('span');
     const button = document.createElement('button');
     let playerText = ""
 
-    playerText = player === "X" ? "Player X plays first?" : "Player O plays first?";
+    playerText = gameState.player === "X" ? "Player X plays first?" : "Player O plays first?";
 
     span.textContent = playerText;
     button.textContent = "Yes"
@@ -50,10 +42,8 @@ function choosePlayer() {
 
 //Display the Game Board
 function loadBoard() {
-    
-    mainContainer.style.display = "flex";
 
-    board.forEach((row,index) => {
+    gameState.board.forEach((row,index) => {
         row.forEach((_sq, i) => {
 
             // Create the Tic Tac Toe squares
@@ -66,46 +56,71 @@ function loadBoard() {
             //Listen if a box is clicked
             square.addEventListener('click', () => {
 
-                player === "X" ? square.classList.toggle('cross') : square.classList.toggle('circle');
+                gameState.player === "X" ? square.classList.toggle('cross') : square.classList.toggle('circle');
 
-                recordMove(board, player, index, i);
-                gameOver = checkWinner(player)
+                recordMove(index, i);
+                checkWinner();
 
-                if(gameOver){
-                    displayWinner(player);
+                if(gameState.gameOver){
+                    displayWinner();
                     return
                 } else {
-                    const play = checkAvailableSquare()
+                    const emptyBox = checkAvailableSquare()
 
-                    if(!play){
-                        displayWinner("tie");
+                    if(!emptyBox){
+                        gameState.player = "tie";
+                        displayWinner();
+                        return
                     }
                 }
                 
                 square.classList.add('clicked');
 
-                player = player === "X" ? "O" : "X";
+                gameState.player = gameState.player === "X" ? "O" : "X";
 
-                infoContainer.innerHTML = "";
-
-                
             })
 
             
         })
     })
+
+    mainContainer.style.display = "flex";
 }
 
 function checkAvailableSquare(){
     let emptyBox = []
 
     //Check if board has available squares
-    board.forEach((row, i) => {
+    gameState.board.forEach((row, i) => {
         emptyBox[i] = row.includes('')
     })
 
     return emptyBox.includes(true) ? true : false;
 }
+
+export function restartGame(){
+    gameState.board = [
+        ['', '', ''],
+        ['', '', ''],
+        ['', '', ''],
+    ];
+    gameState.player = "";
+    gameState.gameOver = false;
+
+    gameState.playerXCombos = [];
+    gameState.playerOCombos = [];
+    gameState.winner = false;
+
+    choosePlayerContainer.style.display = "flex"
+    confirmPlayer.style.display = "none"
+    mainContainer.style.display = "none"
+
+    mainContainer.innerHTML = ""
+    infoContainer.innerHTML = ""
+}
+
+playerX.addEventListener('click', setPlayerX);
+playerO.addEventListener('click', setPlayerO);
 
 
 

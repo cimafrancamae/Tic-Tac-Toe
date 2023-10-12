@@ -7,7 +7,7 @@ $xColor: red;
 $oColor: blue;
 $xoElementWidth: 80%;
 $xoElementHeight: 80%;
-$animationDuration: 1s;
+$animationDuration: 0.1s;
 
 @mixin xoElement {
     width: $xoElementWidth;
