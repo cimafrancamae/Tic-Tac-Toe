@@ -1,27 +1,94 @@
 @use '../../reset';
 @import './variables';
+@import './mediaquery';
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.css");
 
 body {
+    font-family: $fontFamily;
+    color: $bodyFontColor;
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100vh;
     width: 100vw;
-    padding: 5rem;
     gap: 2rem;
 }
 
+button {
+    @include buttonElement;
+    @include boxShadow;
+    cursor: pointer;
+}
+
+section {
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.left-panel {
+    @include boxShadow;
+    width: $leftPanelWidth;
+    background-color: $leftPanelBgColor;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    justify-content: center;
+}
+    
+.right-panel {
+    width: $rightPanelWidth;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 1rem;
+}
+
+.playerWon {
+    background-image: url(/assets/congrats.gif);
+    background-size: cover;
+}
+
+.title {
+    color: $h1FontColor;
+    font-size: $h1fontSize;
+    padding: 2rem;
+}
+
 .main-container {
-    display: none;
-    width: $mainContainerWidth;
-    height: $mainContainerHeight;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 100vw;
+    height: 100vh;
+}
+
+.game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    width: $gameContainerWidth;
+    border-radius: 0.5rem;
+    background-image: url(../assets/tic\ tac\ toe.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .loaded {
+        background-color: rgb(46, 44, 44);
+    }
+}
+
+.game-board {
+    width: $boardContainerWidth;
+    height: $boardContainerHeight;
     flex-wrap: wrap;
-    background-color: $mainContainerBgColor;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .choose-player-container {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
@@ -31,9 +98,29 @@ body {
         gap: 2rem;
 
         div {
-            background-color: $mainContainerBgColor;
+            background-color: $gameContainerBgColor;
             padding: 1rem;
             cursor: pointer;
+        }
+
+        #player-x {
+            @include xPlayer;
+            @include boxShadow;
+            border-radius: 1.5rem;
+        }
+
+        #player-x:hover {
+            background-color: $buttonBgColor;
+        }
+
+        #player-o {
+            @include oPlayer;
+            @include boxShadow;
+            border-radius: 1.5rem;
+        }
+
+        #player-o:hover {
+            background-color: $buttonBgColor;
         }
     }
 
@@ -47,9 +134,10 @@ body {
 }
 
 .box {
-    border: 2px solid #fff;
+    border: 7px solid rgb(46, 44, 44);
     width: $boxWidth;
     height: $boxHeight;
+    background-color: $gameContainerBgColor;
 }
 
 .clicked {
@@ -62,20 +150,29 @@ body {
     justify-content: center;
     align-items: center;
     gap: 2rem;
+    padding: 1rem;
 
     div{
         display: flex;
-        justify-content: space-around;
-        align-items: center;
+        justify-content: space-between;
+        width: 100%;
         gap: 2rem;
     }
+}
+
+.game-history {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
 }
 
 .circle::before{
     @include xoElement;
     content: "";
     display: block;
-    border: 5px solid $oColor;
+    border: 15px solid $oColor;
     border-radius: 50%;
     animation: drawXO $animationDuration linear;
     animation-fill-mode: forwards;
@@ -85,16 +182,18 @@ body {
 .cross {
     position: relative;
     padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .cross::before {
     content: "";
     position: absolute;
     background-color: $xColor;
-    width: 10px;
+    width: 15px;
     height: $xoElementHeight;
     transform: rotate(45deg);
-    left: 45px;
     animation: drawXO $animationDuration linear;
 }
 
@@ -102,10 +201,9 @@ body {
     content: "";
     position: absolute;
     background-color: $xColor;
-    width: 10px;
+    width: 15px;
     height: $xoElementHeight;
     transform: rotate(135deg);
-    left: 45px;
     animation: drawXO $animationDuration linear;
 }
 

@@ -1,0 +1,15 @@
+@media (max-width: 320px) {
+
+    section {
+        width: 100vw;
+    }
+
+    .main-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .game-container {
+        height: auto;
+    }
+}

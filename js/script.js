@@ -1,12 +1,18 @@
 import { recordMove, checkWinner, displayWinner } from './game.js'
-import { gameState } from './variables.js'
+import { gameState, choosePlayerContainer, confirmPlayer, gameContainer, gameBoard, playerO, playerX, title, start } from './variables.js'
+import { startGame } from './restart.js';
 
-const choosePlayerContainer = document.querySelector('.choose-player-container');
-const confirmPlayer = document.querySelector('.confirm-player');
-const mainContainer = document.querySelector('.main-container');
-const infoContainer = document.querySelector('.info-container');
-const playerX = document.getElementById('player-x');
-const playerO = document.getElementById('player-o');
+
+export function setTitle(text){
+    title.innerHTML = "";
+    const h1 = document.createElement('h1')
+    h1.textContent = text;
+    title.append(h1)
+
+    const button = document.createElement('button')
+    button.textContent = "Start Game"
+    start.append(button)
+}
 
 function setPlayerX(){
     gameState.player = "X"
@@ -35,23 +41,26 @@ function confirmFirstPlayer() {
     confirmPlayer.style.display = "flex"
 
     button.addEventListener('click', () => {
+        gameState.firstPlayer = gameState.player;
         choosePlayerContainer.style.display = "none";
         loadBoard();
+        title.style.display = "flex"
     })
 }
 
 //Display the Game Board
 function loadBoard() {
+    gameContainer.classList.add('loaded')
 
     gameState.board.forEach((row,index) => {
         row.forEach((_sq, i) => {
 
             // Create the Tic Tac Toe squares
             const square = document.createElement('div');
-            const squareId = `box-${index}${i}`;
+            const squareId = `${index}${i}`;
             square.classList.add('box');
             square.id = squareId
-            mainContainer.append(square);
+            gameBoard.append(square);
 
             //Listen if a box is clicked
             square.addEventListener('click', () => {
@@ -66,7 +75,6 @@ function loadBoard() {
                     return
                 } else {
                     const emptyBox = checkAvailableSquare()
-
                     if(!emptyBox){
                         gameState.player = "tie";
                         displayWinner();
@@ -84,7 +92,7 @@ function loadBoard() {
         })
     })
 
-    mainContainer.style.display = "flex";
+    gameBoard.style.display = "flex";
 }
 
 function checkAvailableSquare(){
@@ -98,29 +106,11 @@ function checkAvailableSquare(){
     return emptyBox.includes(true) ? true : false;
 }
 
-export function restartGame(){
-    gameState.board = [
-        ['', '', ''],
-        ['', '', ''],
-        ['', '', ''],
-    ];
-    gameState.player = "";
-    gameState.gameOver = false;
-
-    gameState.playerXCombos = [];
-    gameState.playerOCombos = [];
-    gameState.winner = false;
-
-    choosePlayerContainer.style.display = "flex"
-    confirmPlayer.style.display = "none"
-    mainContainer.style.display = "none"
-
-    mainContainer.innerHTML = ""
-    infoContainer.innerHTML = ""
-}
-
+start.addEventListener('click', startGame);
 playerX.addEventListener('click', setPlayerX);
 playerO.addEventListener('click', setPlayerO);
+
+setTitle("Let's Play Tic Tac Toe!");
 
 
 

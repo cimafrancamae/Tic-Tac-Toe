@@ -4,20 +4,39 @@
     <meta charset="UTF-8" />
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="./styles/style.css" type="text/css"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap" rel="stylesheet">
     <script type="module" src="./js/script.js" defer></script>
 </head>
 <body>
-    <!-- Choose player -->
-    <div class="choose-player-container">
-        <span>Choose who plays first:</span>
-        <div class="choose-player">
-            <div id="player-x">X</div>
-            <div id="player-o">O</div>
-        </div>
-        <div class="confirm-player"></div>
+    <div class="main-container">
+        <section class="left-panel">
+            <div class="title"></div>
+            <div class="start"></div>
+            <!-- Choose player -->
+            <div class="choose-player-container">
+                <span>Choose who plays first:</span>
+                <div class="choose-player">
+                    <div id="player-x">X</div>
+                    <div id="player-o">O</div>
+                </div>
+                <div class="confirm-player"></div>
+            </div>
+            <!-- Game History -->
+            <div class="game-history">
+                <h2>Game History</h2>
+            </div>
+        </section>
+
+        <section class="right-panel">
+            <div class="game-container">
+                <!-- Tic Tac Toe Board -->
+                <div class="game-board"></div>
+            </div>
+            <div class="info-container"></div>
+        </section>
+    
     </div>
-    <!-- Tic Tac Toe Board -->
-    <div class="main-container"></div>
-    <div class="info-container"></div>
 </body>
 </html>

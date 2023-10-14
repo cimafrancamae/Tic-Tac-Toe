@@ -1,7 +1,7 @@
-import { restartGame } from './script.js'
-import { gameState, winningCombos } from './variables.js'
-
-const infoContainer = document.querySelector('.info-container');
+import { showGameHistory, showPreviousMove, showNextMove } from './history.js';
+import { setTitle } from './script.js'
+import { gameState, winningCombos, infoContainer, rightPanel } from './variables.js'
+import { startGame } from './restart.js';
 
 export function recordMove(index1, index2){
 
@@ -17,11 +17,12 @@ export function recordMove(index1, index2){
     gameState.player === "X" ? gameState.playerXCombos.push(index) : gameState.playerOCombos.push(index);
 
     const nextPlayer = gameState.player === "X" ? "O" : "X";
+    const text = "It's Player " + nextPlayer + "'s Turn";
 
-    const span = document.createElement('span');
-    span.textContent = "It's Player " + nextPlayer + "'s Turn";
+    setTitle(text);
 
-    infoContainer.append(span);
+    gameState.historyPointer++;
+    console.log('pointer', gameState.historyPointer)
 
 }
 
@@ -52,14 +53,15 @@ export function checkWinner(){
 
 export function displayWinner(){
     infoContainer.innerHTML = "";
+    rightPanel.classList.add('playerWon')
 
-    const span = document.createElement('span')
-    span.textContent = gameState.player === "tie" ? "It's a TIE" : "Player " + gameState.player + " Wins!";
+    const text = gameState.player === "tie" ? "It's a TIE!" : "Player " + gameState.player + " Wins!";
+    setTitle(text);
 
     const buttonDiv = document.createElement('div')
     
     const prevButton = document.createElement('button')
-    prevButton.textContent = "<< Previous"
+    prevButton.textContent = "<< Prev"
     prevButton.id = "prev-btn"
 
     const nextButton = document.createElement('button')
@@ -70,13 +72,17 @@ export function displayWinner(){
     restart.textContent = "Restart Game"
 
     buttonDiv.append(prevButton, nextButton)
-    infoContainer.append(span, buttonDiv, restart)
+    infoContainer.append(buttonDiv, restart)
 
 
-    restart.addEventListener('click', restartGame)
+    prevButton.addEventListener('click', showPreviousMove)
+    nextButton.addEventListener('click', showNextMove)
+    restart.addEventListener('click', startGame)
 
     //Replace all boxes with a deep clone of itself and remove the event listener 
     const allBoxes = document.querySelectorAll('.box')
     allBoxes.forEach(box => box.replaceWith(box.cloneNode(true))) 
+
+    showGameHistory()
 }
 
