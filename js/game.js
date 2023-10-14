@@ -1,5 +1,5 @@
 import { showGameHistory, showPreviousMove, showNextMove } from './history.js';
-import { setTitle } from './script.js'
+import { setTitle, mediaQuery } from './script.js'
 import { gameState, winningCombos, infoContainer, rightPanel } from './variables.js'
 import { startGame } from './restart.js';
 
@@ -52,6 +52,9 @@ export function checkWinner(){
 }
 
 export function displayWinner(){
+
+    mediaQuery("flex","flex")
+
     infoContainer.innerHTML = "";
     rightPanel.classList.add('playerWon')
 
@@ -73,7 +76,6 @@ export function displayWinner(){
 
     buttonDiv.append(prevButton, nextButton)
     infoContainer.append(buttonDiv, restart)
-
 
     prevButton.addEventListener('click', showPreviousMove)
     nextButton.addEventListener('click', showNextMove)

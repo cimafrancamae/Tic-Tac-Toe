@@ -1,8 +1,17 @@
 @media (max-width: 320px) {
+  section {
+    width: 100vw;
+  }
   .main-container {
-    /* width: ; */
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .left-panel, .right-panel {
+    width: 100%;
+  }
+  .game-container {
+    height: auto;
   }
 }
 

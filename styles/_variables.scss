@@ -8,8 +8,8 @@ $leftPanelWidth: 40%;
 $rightPanelWidth: 60%;
 $gameContainerWidth: fit-content;
 $gameContainerHeight: fit-content;
-$boardContainerWidth: 400px;
-$boardContainerHeight: 400px;
+$boardContainerWidth: clamp(1rem, -7rem + 128vw, 25rem);
+$boardContainerHeight: clamp(1rem, -7rem + 128vw, 25rem);
 $boxWidth: calc($boardContainerWidth / 3);
 $boxHeight: calc($boardContainerHeight / 3);
 

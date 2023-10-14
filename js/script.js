@@ -1,5 +1,5 @@
 import { recordMove, checkWinner, displayWinner } from './game.js'
-import { gameState, choosePlayerContainer, confirmPlayer, gameContainer, gameBoard, playerO, playerX, title, start } from './variables.js'
+import { gameState, choosePlayerContainer, confirmPlayer, gameContainer, gameBoard, playerO, playerX, title, start, leftPanel, rightPanel } from './variables.js'
 import { startGame } from './restart.js';
 
 
@@ -48,9 +48,27 @@ function confirmFirstPlayer() {
     })
 }
 
+export function mediaQuery(leftDisplay, rightDisplay){
+    // Check if the window matches a media query
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+
+    if (mediaQuery.matches) {
+        // const rightPaneldisplay = leftPanel.style.display === "flex" ? "none" : "flex"
+        // console.log(leftPanel.style.display)
+        // console.log(display)
+        leftPanel.style.display = leftDisplay
+        rightPanel.style.display = rightDisplay
+        // rightPanel
+    } 
+
+}
+
 //Display the Game Board
 function loadBoard() {
+
+    mediaQuery("none","flex");
     gameContainer.classList.add('loaded')
+    gameContainer.classList.remove('unloaded')
 
     gameState.board.forEach((row,index) => {
         row.forEach((_sq, i) => {
@@ -111,7 +129,8 @@ playerX.addEventListener('click', setPlayerX);
 playerO.addEventListener('click', setPlayerO);
 
 setTitle("Let's Play Tic Tac Toe!");
-
+mediaQuery("flex", "none");
+gameContainer.classList.add('unloaded')
 
 
 

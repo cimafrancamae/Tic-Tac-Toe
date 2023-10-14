@@ -1,7 +1,7 @@
 import { gameState, choosePlayerContainer, 
     confirmPlayer, gameContainer, gameBoard, 
     title, start, infoContainer, gameHistory, rightPanel } from "./variables.js";
-import { setTitle } from "./script.js";
+import { setTitle, mediaQuery } from "./script.js";
 
 export function startGame(){
     gameState.board = [
@@ -32,6 +32,8 @@ export function startGame(){
     title.style.display = "none"
     gameContainer.classList.remove('loaded')
     rightPanel.classList.remove('playerWon')
+    gameContainer.classList.add('unloaded')
+    gameContainer.classList.remove('loaded')
 
     const allBoxes = document.querySelectorAll('.box');
     allBoxes.forEach(box => {
@@ -41,4 +43,5 @@ export function startGame(){
     })
 
     setTitle("Let's Play Tic Tac Toe!");
+    mediaQuery("flex", "none")
 }

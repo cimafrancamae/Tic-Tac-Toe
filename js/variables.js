@@ -47,4 +47,5 @@ export const title = document.querySelector('.title');
 export const start = document.querySelector('.start');
 export const infoContainer = document.querySelector('.info-container');
 export const rightPanel = document.querySelector('.right-panel');
+export const leftPanel = document.querySelector('.left-panel');
 export const gameHistory = document.querySelector('.game-history');
