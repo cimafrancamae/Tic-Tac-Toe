@@ -22,8 +22,6 @@ export function recordMove(index1, index2){
     setTitle(text);
 
     gameState.historyPointer++;
-    console.log('pointer', gameState.historyPointer)
-
 }
 
 export function checkWinner(){
@@ -43,11 +41,8 @@ export function checkWinner(){
         })
 
         return gameState.gameOver
-
     } else {
-
         return false
-
     }
 }
 

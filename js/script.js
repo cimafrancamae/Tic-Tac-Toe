@@ -1,5 +1,6 @@
 import { recordMove, checkWinner, displayWinner } from './game.js'
-import { gameState, choosePlayerContainer, confirmPlayer, gameContainer, gameBoard, playerO, playerX, title, start, leftPanel, rightPanel } from './variables.js'
+import { gameState, choosePlayerContainer, confirmPlayer, gameContainer, 
+    gameBoard, playerO, playerX, title, start, leftPanel, rightPanel } from './variables.js'
 import { startGame } from './restart.js';
 
 
@@ -53,13 +54,12 @@ export function mediaQuery(leftDisplay, rightDisplay){
     const mediaQuery = window.matchMedia("(max-width: 768px)");
 
     if (mediaQuery.matches) {
-        // const rightPaneldisplay = leftPanel.style.display === "flex" ? "none" : "flex"
-        // console.log(leftPanel.style.display)
-        // console.log(display)
         leftPanel.style.display = leftDisplay
         rightPanel.style.display = rightDisplay
-        // rightPanel
-    } 
+    } else {
+        leftPanel.style.display = "flex"
+        rightPanel.style.display = "flex"
+    }
 
 }
 
@@ -103,10 +103,7 @@ function loadBoard() {
                 square.classList.add('clicked');
 
                 gameState.player = gameState.player === "X" ? "O" : "X";
-
             })
-
-            
         })
     })
 
@@ -129,8 +126,12 @@ playerX.addEventListener('click', setPlayerX);
 playerO.addEventListener('click', setPlayerO);
 
 setTitle("Let's Play Tic Tac Toe!");
-mediaQuery("flex", "none");
 gameContainer.classList.add('unloaded')
+
+window.addEventListener('resize', ()=> {
+    console.log("resize", window.screen.width)
+    mediaQuery("flex", "none");
+})
 
 
 

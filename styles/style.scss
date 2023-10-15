@@ -29,6 +29,7 @@ section {
 }
 
 .left-panel {
+    @include boxShadow;
     border: 15px solid black;
     width: $leftPanelWidth;
     background-color: $leftPanelBgColor;
@@ -57,7 +58,6 @@ section {
 .main-container {
     display: flex;
     flex-wrap: wrap;
-    // flex-direction: column-reverse;
     justify-content: space-around;
     align-items: center;
     width: 100vw;
@@ -71,18 +71,20 @@ section {
     padding: 1rem;
     width: $gameContainerWidth;
     border-radius: 1rem;
-    // background-image: url(../assets/tic\ tac\ toe.gif);
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .loaded {
     background-color: rgb(46, 44, 44);
-    // background-image: url(../assets/tic\ tac\ toe.gif);
 }
 
 .unloaded {
     background-image: url(../assets/tic\ tac\ toe.gif);
+    background-size: contain;
+    background-position: center;
+    height: 100%;
+    width: 100%;
 }
 
 .game-board {
@@ -90,7 +92,7 @@ section {
     height: $boardContainerHeight;
     flex-wrap: wrap;
     background-color: transparent;
-    cursor: pointer;
+    // cursor: pointer;
 }
 
 .choose-player-container {
@@ -144,6 +146,7 @@ section {
     width: $boxWidth;
     height: $boxHeight;
     background-color: $gameContainerBgColor;
+    cursor: pointer;
 }
 
 .clicked {
@@ -221,39 +224,3 @@ section {
         transform: scale(1);
     }
 }
-
-// @media (max-width: 768px) {
-//     section {
-//         min-width: 100vw;
-//         width: 100%;
-//         height: 50%;
-//     }
-
-//     // .left-panel, .right-panel {
-//     //     min-width: 100%;
-//     // }
-
-//     .left-panel {
-//         min-height: 100%;
-//         min-width: 100vw;
-//         width: 100vw;
-//         // height: auto;
-//     }
-
-//     .right-panel {
-//         min-height: 100%;
-//         min-width: 100vw;
-//         width: 100vw;
-//         // height: auto;
-//         display: flex;
-//         justify-content: center;
-//         align-items: center;
-//         padding-bottom: 3rem;
-//     }
-
-//     .game-container {
-//         height: auto;
-//         width: auto;
-//         background: none;
-//     }
-// }
