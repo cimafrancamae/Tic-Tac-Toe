@@ -1,6 +1,6 @@
 import { showGameHistory, showPreviousMove, showNextMove } from './history.js';
 import { setTitle, mediaQuery } from './script.js'
-import { gameState, winningCombos, infoContainer, rightPanel } from './variables.js'
+import { gameState, winningCombos, infoContainer, rightPanel, leftPanel } from './variables.js'
 import { startGame } from './restart.js';
 
 export function recordMove(index1, index2){
@@ -48,7 +48,7 @@ export function checkWinner(){
 
 export function displayWinner(){
 
-    mediaQuery("flex","flex")
+    mediaQuery("flex","none")
 
     infoContainer.innerHTML = "";
     rightPanel.classList.add('playerWon')
@@ -57,21 +57,31 @@ export function displayWinner(){
     setTitle(text);
 
     const buttonDiv = document.createElement('div')
+
+    const showHistory = document.createElement('span')
+    showHistory.innerHTML = `<i class="fa-solid fa-rectangle-list fa-xl"></i>`
+    showHistory.classList.add('icon')
     
-    const prevButton = document.createElement('button')
-    prevButton.textContent = "<< Prev"
+    const prevButton = document.createElement('div')
+    prevButton.innerHTML = `<i class="fa-solid fa-backward fa-xl"></i>`
+    prevButton.classList.add('icon')
     prevButton.id = "prev-btn"
 
-    const nextButton = document.createElement('button')
-    nextButton.textContent = "Next >>"
+    const nextButton = document.createElement('div')
+    nextButton.innerHTML = `<i class="fa-solid fa-forward fa-xl"></i>`
+    nextButton.classList.add('icon')
     nextButton.id = "next-btn"
 
     const restart = document.createElement('button')
     restart.textContent = "Restart Game"
 
-    buttonDiv.append(prevButton, nextButton)
+    buttonDiv.append(showHistory, prevButton, nextButton)
     infoContainer.append(buttonDiv, restart)
 
+    showHistory.addEventListener('click', () => {
+        mediaQuery("flex","none");
+        setTitle("Game History")
+    })
     prevButton.addEventListener('click', showPreviousMove)
     nextButton.addEventListener('click', showNextMove)
     restart.addEventListener('click', startGame)

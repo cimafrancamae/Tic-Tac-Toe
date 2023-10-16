@@ -92,7 +92,6 @@ section {
     height: $boardContainerHeight;
     flex-wrap: wrap;
     background-color: transparent;
-    // cursor: pointer;
 }
 
 .choose-player-container {
@@ -147,6 +146,11 @@ section {
     height: $boxHeight;
     background-color: $gameContainerBgColor;
     cursor: pointer;
+    border-radius: 1rem;
+}
+
+.box:hover {
+    background-color: bisque;
 }
 
 .clicked {
@@ -164,7 +168,7 @@ section {
     div{
         display: flex;
         justify-content: space-between;
-        width: 100%;
+        align-items: center;
         gap: 2rem;
     }
 }
@@ -176,6 +180,37 @@ section {
     align-items: flex-start;
     gap: 1rem;
 }
+
+// #show-history {
+//     @include boxShadow;
+//     display: flex;
+//     cursor: pointer;
+//     color: $buttonBgColor;
+// }
+
+.icon {
+    @include boxShadow;
+    display: flex;
+    cursor: pointer;
+    color: $buttonBgColor;   
+}
+
+#close-history {
+    display: none;
+    cursor: pointer;
+    top: 45px;
+}
+
+.closeButton {
+    right: calc(rightPanelWidth + 45px);
+    top: 45px;
+}
+
+// .showHistoryIcon {
+//     @include boxShadow;
+//     color: $buttonBgColor;
+//     cursor: pointer;
+// }
 
 .circle::before{
     @include xoElement;

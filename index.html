@@ -5,19 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="./styles/style.css" type="text/css"> 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap" rel="stylesheet">
     <script type="module" src="./js/script.js" defer></script>
 </head>
 <body>
     <div class="main-container">
         <section class="left-panel">
+            <!-- Mobile View Only -->
+            <div id="close-history">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </div>
             <div class="title"></div>
             <div class="start"></div>
             <!-- Choose player -->
             <div class="choose-player-container">
-                <span>Choose who plays first:</span>
+                <span>Choose first player:</span>
                 <div class="choose-player">
                     <div id="player-x">X</div>
                     <div id="player-o">O</div>

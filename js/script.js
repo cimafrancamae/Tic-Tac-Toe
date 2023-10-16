@@ -1,6 +1,6 @@
 import { recordMove, checkWinner, displayWinner } from './game.js'
 import { gameState, choosePlayerContainer, confirmPlayer, gameContainer, 
-    gameBoard, playerO, playerX, title, start, leftPanel, rightPanel } from './variables.js'
+    gameBoard, playerO, playerX, title, start, leftPanel, rightPanel, closeHistory } from './variables.js'
 import { startGame } from './restart.js';
 
 
@@ -56,6 +56,16 @@ export function mediaQuery(leftDisplay, rightDisplay){
     if (mediaQuery.matches) {
         leftPanel.style.display = leftDisplay
         rightPanel.style.display = rightDisplay
+
+        if(gameState.gameOver){
+            closeHistory.style.display = "block"
+            closeHistory.classList.add('closeButton')
+
+            closeHistory.addEventListener('click', () => {
+                leftPanel.style.display = "none"
+                rightPanel.style.display = "flex"
+            })
+        }
     } else {
         leftPanel.style.display = "flex"
         rightPanel.style.display = "flex"

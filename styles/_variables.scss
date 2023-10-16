@@ -2,7 +2,6 @@ $fontFamily: 'Paytone One', sans-serif;
 $h1fontSize: clamp(1.5rem, 1.167rem + 5.333vw, 2.5rem);
 $bodyFontSize: clamp(0.5rem, -0.214rem + 1.905vw, 1.5rem);
 $buttonFontSize: clamp(0.5rem, 0.143rem + 0.952vw, 1rem);
-$buttonWidth: max-content;
 
 $leftPanelWidth: 40%;
 $rightPanelWidth: 60%;
@@ -12,8 +11,12 @@ $boardContainerWidth: clamp(1rem, -7rem + 128vw, 25rem);
 $boardContainerHeight: clamp(1rem, -7rem + 128vw, 25rem);
 $boxWidth: calc($boardContainerWidth / 3);
 $boxHeight: calc($boardContainerHeight / 3);
+$buttonWidth: max-content;
+$xoElementWidth: 80%;
+$xoElementHeight: 80%;
 
 $leftPanelBgColor: #edd87b;
+$rightPanelBgColor: rgb(245, 245, 219);
 $h1FontColor: black;
 $bodyFontColor: #333;
 $gameContainerBgColor: #edd87b;
@@ -22,8 +25,6 @@ $oColor: blue;
 $buttonBgColor: green;
 $buttonFontColor: #f3f3f3;
 
-$xoElementWidth: 80%;
-$xoElementHeight: 80%;
 $animationDuration: 0.1s;
 
 @mixin xPlayer {

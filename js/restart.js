@@ -1,6 +1,6 @@
 import { gameState, choosePlayerContainer, 
     confirmPlayer, gameContainer, gameBoard, 
-    title, start, infoContainer, gameHistory, rightPanel } from "./variables.js";
+    title, start, infoContainer, gameHistory, rightPanel, closeHistory } from "./variables.js";
 import { setTitle, mediaQuery } from "./script.js";
 
 export function startGame(){
@@ -22,14 +22,15 @@ export function startGame(){
     choosePlayerContainer.style.display = "flex"
     confirmPlayer.style.display = "none"
     gameBoard.style.display = "none"
+    start.style.display = "none"
+    title.style.display = "none"
+    closeHistory.style.display = "none"
 
     gameBoard.innerHTML = ""
     infoContainer.innerHTML = ""
     gameHistory.innerHTML = ""
 
-    choosePlayerContainer.style.display = "flex"
-    start.style.display = "none"
-    title.style.display = "none"
+
     gameContainer.classList.remove('loaded')
     rightPanel.classList.remove('playerWon')
     gameContainer.classList.add('unloaded')

@@ -1,8 +1,6 @@
 @media (max-width: 768px) {
     section {
         min-width: 100vw;
-        width: 100%;
-        height: 50%;
     }
 
     .main-container {
@@ -13,9 +11,23 @@
         height: 100vh;
     }
     
-
     .game-container {
         background: none;
-        z-index: 99;
+    }
+
+    .info-container {
+        display: flex;
+        justify-content: center;
+        gap: 0.1rem;
+    }
+
+    #show-history {
+        display: inline-block;
+    }
+
+    #close-history {
+        position: absolute;
+        right: 45px;
+        top: 45px;
     }
 }
