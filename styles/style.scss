@@ -181,13 +181,6 @@ section {
     gap: 1rem;
 }
 
-// #show-history {
-//     @include boxShadow;
-//     display: flex;
-//     cursor: pointer;
-//     color: $buttonBgColor;
-// }
-
 .icon {
     @include boxShadow;
     display: flex;
@@ -205,12 +198,6 @@ section {
     right: calc(rightPanelWidth + 45px);
     top: 45px;
 }
-
-// .showHistoryIcon {
-//     @include boxShadow;
-//     color: $buttonBgColor;
-//     cursor: pointer;
-// }
 
 .circle::before{
     @include xoElement;

@@ -1,5 +1,5 @@
 import { gameState, movesDesc, gameHistory, closeHistory, leftPanel, rightPanel } from "./variables.js";
-import { mediaQuery, setTitle } from "./script.js";
+import { setTitle } from "./script.js";
 
 
 export function showPreviousMove(){
@@ -61,7 +61,6 @@ export function showGameHistory(){
     })
 
     gameHistory.style.display = "flex"
-    // mediaQuery("flex","none")
 }
 
 function addHistory(player, playerMove){

@@ -60,7 +60,6 @@ export function mediaQuery(leftDisplay, rightDisplay){
         if(gameState.gameOver){
             closeHistory.style.display = "block"
             closeHistory.classList.add('closeButton')
-
             closeHistory.addEventListener('click', () => {
                 leftPanel.style.display = "none"
                 rightPanel.style.display = "flex"
@@ -111,7 +110,6 @@ function loadBoard() {
                 }
                 
                 square.classList.add('clicked');
-
                 gameState.player = gameState.player === "X" ? "O" : "X";
             })
         })
@@ -139,7 +137,6 @@ setTitle("Let's Play Tic Tac Toe!");
 gameContainer.classList.add('unloaded')
 
 window.addEventListener('resize', ()=> {
-    console.log("resize", window.screen.width)
     mediaQuery("flex", "none");
 })
 

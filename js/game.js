@@ -1,6 +1,6 @@
 import { showGameHistory, showPreviousMove, showNextMove } from './history.js';
 import { setTitle, mediaQuery } from './script.js'
-import { gameState, winningCombos, infoContainer, rightPanel, leftPanel } from './variables.js'
+import { gameState, winningCombos, infoContainer, rightPanel } from './variables.js'
 import { startGame } from './restart.js';
 
 export function recordMove(index1, index2){
